@@ -15,12 +15,6 @@ class _ContactListItemState extends State<ContactListItem> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 3.0, top: 12.0, right: 10.0, bottom: 15.0),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: 1.0, color: Colors.grey.shade500),
-          bottom: BorderSide(width: 1.0, color: Colors.grey.shade500),
-        ),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
