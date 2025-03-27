@@ -38,18 +38,6 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text(
-            "Contact Page Clone",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: _getContentPages(),
         bottomNavigationBar: BottomAppBar(
           child: Row(
