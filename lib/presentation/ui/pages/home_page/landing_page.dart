@@ -36,135 +36,134 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: _getContentPages(),
-        bottomNavigationBar: BottomAppBar(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedBottomNavItemIndex = 0;
-                  });
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.star_border_outlined,
+    return Scaffold(
+      appBar: AppBar(),
+      body: _getContentPages(),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedBottomNavItemIndex = 0;
+                });
+              },
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star_border_outlined,
+                    color:
+                        _selectedBottomNavItemIndex == 0
+                            ? Colors.blue
+                            : Colors.grey.shade500,
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    "Favorite",
+                    style: TextStyle(
                       color:
                           _selectedBottomNavItemIndex == 0
                               ? Colors.blue
                               : Colors.grey.shade500,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.w400,
                     ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      "Favorite",
-                      style: TextStyle(
-                        color:
-                            _selectedBottomNavItemIndex == 0
-                                ? Colors.blue
-                                : Colors.grey.shade500,
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedBottomNavItemIndex = 1;
-                  });
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.schedule_outlined,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedBottomNavItemIndex = 1;
+                });
+              },
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.schedule_outlined,
+                    color:
+                        _selectedBottomNavItemIndex == 1
+                            ? Colors.blue
+                            : Colors.grey.shade500,
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    "Recent",
+                    style: TextStyle(
                       color:
                           _selectedBottomNavItemIndex == 1
                               ? Colors.blue
                               : Colors.grey.shade500,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.w400,
                     ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      "Recent",
-                      style: TextStyle(
-                        color:
-                            _selectedBottomNavItemIndex == 1
-                                ? Colors.blue
-                                : Colors.grey.shade500,
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedBottomNavItemIndex = 2;
-                  });
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.account_circle_outlined,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedBottomNavItemIndex = 2;
+                });
+              },
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.account_circle_outlined,
+                    color:
+                        _selectedBottomNavItemIndex == 2
+                            ? Colors.blue
+                            : Colors.grey.shade500,
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    "Contact",
+                    style: TextStyle(
                       color:
                           _selectedBottomNavItemIndex == 2
                               ? Colors.blue
                               : Colors.grey.shade500,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.w400,
                     ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      "Contact",
-                      style: TextStyle(
-                        color:
-                            _selectedBottomNavItemIndex == 2
-                                ? Colors.blue
-                                : Colors.grey.shade500,
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedBottomNavItemIndex = 3;
-                  });
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.call_outlined,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedBottomNavItemIndex = 3;
+                });
+              },
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.call_outlined,
+                    color:
+                        _selectedBottomNavItemIndex == 3
+                            ? Colors.blue
+                            : Colors.grey.shade500,
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    "Call",
+                    style: TextStyle(
                       color:
                           _selectedBottomNavItemIndex == 3
                               ? Colors.blue
                               : Colors.grey.shade500,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.w400,
                     ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      "Call",
-                      style: TextStyle(
-                        color:
-                            _selectedBottomNavItemIndex == 3
-                                ? Colors.blue
-                                : Colors.grey.shade500,
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
