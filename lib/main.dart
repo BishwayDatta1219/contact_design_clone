@@ -1,3 +1,4 @@
+import 'package:contact_design_clone/presentation/ui/pages/contact_details_page/widgets/contact_details_page.dart';
 import 'package:contact_design_clone/presentation/ui/pages/home_page/landing_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const LandingPage(),
+      home: ContactDetailsPage(),
     );
   }
 }
