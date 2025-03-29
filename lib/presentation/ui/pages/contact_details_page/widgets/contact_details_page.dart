@@ -14,7 +14,7 @@ class _ContactDetailsPageState extends State<ContactDetailsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blue.shade800,
+        backgroundColor: Color(0xFF154edc),
         body: ContactDetailsItem(),
       ),
     );
