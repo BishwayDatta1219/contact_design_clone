@@ -1,61 +1,78 @@
-import 'package:contact_design_clone/domain/entity/contact_details_entity.dart';
+import 'package:contact_design_clone/domain/entity/contact_list_entity.dart';
 import 'package:flutter/material.dart';
 
-class ContactDetailsItem extends StatefulWidget {
-  const ContactDetailsItem({super.key});
+class ContactDetailsPage extends StatefulWidget {
+  final ContactListEntity contact;
+
+  const ContactDetailsPage({
+    super.key,
+    required this.contact,
+  });
 
   @override
-  State<ContactDetailsItem> createState() => _ContactDetailsItemState();
+  State<ContactDetailsPage> createState() => _ContactDetailsPageState();
 }
 
-class _ContactDetailsItemState extends State<ContactDetailsItem> {
+class _ContactDetailsPageState extends State<ContactDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [_buildUserContactDetails()]);
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xFF154edc),
+        body: _buildUserContactDetails(),
+      ),
+    );
   }
 
   _buildUserContactDetails() {
-    return Column(
-      children: [
-        // BACK ARROW AND EDIT CONTACT SECTION
-        _buildBackEditContact(),
-        SizedBox(height: 50.0),
-        Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 74.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.74,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30.0),
-                    topLeft: Radius.circular(30.0),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _buildBackEditContact(),
+          SizedBox(height: 50.0),
+          Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 74.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.74,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30.0),
+                      topLeft: Radius.circular(30.0),
+                    ),
+                    color: Color(0xFFffffff),
                   ),
-                  color: Color(0xFFffffff),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
-                  child: Column(
-                    children: [
-                      _buildUserName(),
-                      SizedBox(height: 20.0),
-                      _buildRowButton(),
-                      SizedBox(height: 20.0),
-                      _buildPhoneNumberDisplay(),
-                      _buildWhatsAppSection(),
-                      _buildTelegramSection(),
-                      _buildFooterTextSection(),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 80.0),
+                    child: Column(
+                      children: [
+                        _buildUserName(),
+                        SizedBox(height: 20.0),
+                        _buildRowButton(),
+                        SizedBox(height: 20.0),
+                        _buildPhoneNumberDisplay(),
+                        _buildSocialCallingButton(
+                          socialMediaName: "WhatsApp",
+                          iconAssetPath: "assets/whatsapp_icon.png",
+                        ),
+                        _buildSocialCallingButton(
+                          socialMediaName: "Telegram",
+                          iconAssetPath: "assets/telegram_icon.png",
+                        ),
+                        _buildFooterTextSection(),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            _buildUserImage(),
-          ],
-        ),
-      ],
+              _buildUserImage(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -68,7 +85,7 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
           width: 138.0,
           height: 138.0,
           child: Image.network(
-            "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+            widget.contact.imagePath,
             fit: BoxFit.cover,
           ),
         ),
@@ -76,55 +93,8 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
     );
   }
 
-  _buildTelegramSection() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 3.0,
-        left: 14.0,
-        right: 14.0,
-        bottom: 10.0,
-      ),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 83,
-        decoration: BoxDecoration(
-          color: Color(0xFFfafbfc),
-          border: Border.all(width: 1.5, color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(9.0),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Telegram",
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-              ),
-              Container(
-                width: 35.0,
-                height: 35.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                child: Image.asset(
-                  "assets/telegram_icon.png",
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  _buildWhatsAppSection() {
+  _buildSocialCallingButton(
+      {required String socialMediaName, required String iconAssetPath}) {
     return Padding(
       padding: const EdgeInsets.only(
         top: 3.0,
@@ -146,11 +116,11 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Whatsapp",
+                socialMediaName,
                 style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
                 ),
               ),
               Container(
@@ -161,7 +131,7 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 child: Image.asset(
-                  "assets/whatsapp_icon.png",
+                  iconAssetPath,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -175,14 +145,11 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
   _buildPhoneNumberDisplay() {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 3.0,
         left: 14.0,
         right: 14.0,
         bottom: 10.0,
       ),
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 83,
         decoration: BoxDecoration(
           color: Color(0xFFfafbfc),
           border: Border.all(width: 1.5, color: Colors.grey.shade300),
@@ -191,7 +158,7 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 "Mobile | Indonesia",
@@ -203,10 +170,10 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
               ),
               SizedBox(height: 3),
               Text(
-                "(+62) 8126 - 3820 - 3928",
+                widget.contact.phoneNumber,
                 style: TextStyle(
                   color: Colors.black87,
-                  fontSize: 17.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -306,7 +273,7 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
   _buildUserName() {
     return Center(
       child: Text(
-        "Alesandro del Piero",
+        widget.contact.userName,
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
       ),
     );
@@ -316,12 +283,18 @@ class _ContactDetailsItemState extends State<ContactDetailsItem> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 40.0, left: 30.0),
-          child: Icon(
-            Icons.arrow_back_rounded,
-            size: 30.0,
-            color: Colors.white,
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40.0, left: 30.0),
+            child: Icon(
+              Icons.arrow_back_rounded,
+              size: 30.0,
+              color: Colors.white,
+            ),
           ),
         ),
         Padding(
